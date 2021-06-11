@@ -93,6 +93,14 @@ public final class ArrayHelper {
     throw new UnsupportedOperationException();
   }
 
+  public static <T> void setAt(T[] array, int index, T value) {
+    WasmArray wasmArray = asWasmArray(array);
+    if (wasmArray.getLength() < index + 1) {
+      wasmArray.setLength(index + 1);
+    }
+    array[index] = value;
+  }
+
   private ArrayHelper() {}
 }
 
